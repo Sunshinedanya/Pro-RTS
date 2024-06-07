@@ -71,7 +71,7 @@ public class ConfigSaver : MonoBehaviour, ISerializationCallbackReceiver
     public void OnBeforeSerialize()
     {
        var config = _currentScriptableObjectConfig.GetConfig();
-        SetConfig(config);
+       SetConfig(config);
     }
 
     public void OnAfterDeserialize()
