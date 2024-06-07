@@ -10,12 +10,18 @@ public class ConfigSaver : MonoBehaviour, ISerializationCallbackReceiver
     [SerializeField] private ResolutionChanger _resolutionChanger;
     [SerializeField] private VolumeChanger _volumeChanger;
 
-    private GameConfig _currentConfig;
+    [SerializeField] private GameConfig _currentConfig;
     [SerializeField] private GameConfigScriptableObject _currentScriptableObjectConfig;
 
     private void Start()
     {
         path = Path.Combine(Application.dataPath, _fileName);
+        Load();
+    }
+
+    private void OnApplicationQuit()
+    {
+        Save();
     }
 
     public void Save()
@@ -23,10 +29,11 @@ public class ConfigSaver : MonoBehaviour, ISerializationCallbackReceiver
         var save = GetConfig();
         
         var json = JsonUtility.ToJson(save);
+
+        File.WriteAllText(path, json);
+        print(json);
         
         File.WriteAllText(path, json);
-
-        _currentConfig = save;
     }
 
     public void Load()
@@ -52,7 +59,6 @@ public class ConfigSaver : MonoBehaviour, ISerializationCallbackReceiver
 
         return save;
     }
-
     public void SetConfig(GameConfig config)
     {
         _currentConfig = config;

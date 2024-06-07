@@ -21,7 +21,6 @@ public class ResolutionChanger : MonoBehaviour
     }
     public void ChangeResolution()
     {
-        print(_dropdown.value);
         switch (_dropdown.value)
         {
             case 0:
