@@ -2599,7 +2599,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _resolutionChanger: {fileID: 447786440}
   _volumeChanger: {fileID: 2092013837}
-  _currentScriptableObject: {fileID: 0}
+  _currentScriptableObjectConfig: {fileID: 11400000, guid: 9ec3334dc59d0fd4d886c7af8e0da79e, type: 2}
 --- !u!4 &1696175724
 Transform:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class ConfigSaver : MonoBehaviour, ISerializationCallbackReceiver
     [SerializeField] private VolumeChanger _volumeChanger;
 
     private GameConfig _currentConfig;
-    [SerializeField] private GameConfigScriptableObject _currentScriptableObject;
+    [SerializeField] private GameConfigScriptableObject _currentScriptableObjectConfig;
 
     private void Start()
     {
@@ -34,7 +34,7 @@ public class ConfigSaver : MonoBehaviour, ISerializationCallbackReceiver
         var json = File.ReadAllText(path);
         var save = JsonUtility.FromJson<GameConfig>(json);
 
-        _currentConfig = save;
+        SetConfig(save);
     }
 
     public GameConfig GetConfig()
@@ -53,6 +53,12 @@ public class ConfigSaver : MonoBehaviour, ISerializationCallbackReceiver
         return save;
     }
 
+    public void SetConfig(GameConfig config)
+    {
+        _currentConfig = config;
+        FillChangers();
+    }
+
     private void FillChangers()
     {
         var volumeConfig = _currentConfig.GetVolumeConfig();
@@ -64,11 +70,11 @@ public class ConfigSaver : MonoBehaviour, ISerializationCallbackReceiver
 
     public void OnBeforeSerialize()
     {
-        throw new NotImplementedException();
+       var config = _currentScriptableObjectConfig.GetConfig();
+        SetConfig(config);
     }
 
     public void OnAfterDeserialize()
     {
-        throw new NotImplementedException();
     }
 }

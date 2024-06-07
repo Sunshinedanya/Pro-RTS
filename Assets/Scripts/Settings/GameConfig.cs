@@ -3,23 +3,23 @@ public struct GameConfig
 {
     public int height;
     public int width;
-    public bool isFullScreen;
+    public bool isFullscreen;
 
     public float volume;
     public bool mute;
 
-    public GameConfig(int height, int width, bool isFullScreen, float volume, bool mute)
+    public GameConfig(int height, int width, bool isFullscreen, float volume, bool mute)
     {
         this.height = height;
         this.width = width;
-        this.isFullScreen = isFullScreen;
+        this.isFullscreen = isFullscreen;
         this.volume = volume;
         this.mute = mute;
     }
 
     public (int width, int height, bool fullscreen) GetResolutionConfig()
     {
-        var config = (width, height, isFullScreen);
+        var config = (width, height, isFullscreen);
         return config;    
     }
 

@@ -5,7 +5,7 @@ public class GameConfigScriptableObject : ScriptableObject
 {
     public int height;
     public int width;
-    public bool isFullScreen;
+    public bool isFullscreen;
     public float volume;
     public bool mute;
 
@@ -13,8 +13,14 @@ public class GameConfigScriptableObject : ScriptableObject
     {
         height = config.height;
         width = config.width;
-        isFullScreen = config.isFullScreen;
+        isFullscreen = config.isFullscreen;
         volume = config.volume;
         mute = config.mute;
+    }
+
+    public GameConfig GetConfig()
+    {
+        var config = new GameConfig(height, width, isFullscreen, volume, mute);
+        return config;
     }
 }
