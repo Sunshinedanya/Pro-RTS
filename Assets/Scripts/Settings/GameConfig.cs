@@ -27,12 +27,4 @@ public struct GameConfig
         var config = (volume, mute);
         return config;
     }
-    public void SetConfig(GameConfigScriptableObject config)
-    {
-        this.height = config.height;
-        this.width = config.width;
-        this.isFullscreen = config.isFullscreen;
-        this.volume = config.volume;
-        this.mute = config.mute;
-    }
 }
