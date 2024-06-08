@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ResolutionChanger : MonoBehaviour
 {
     [SerializeField] private Dropdown _dropdown;
-    [SerializeField] private Button _fullscreenButton;
+    [SerializeField] private Toggle _fullscreenToggle;
 
     private int _width;
     private int _height;
@@ -16,8 +16,8 @@ public class ResolutionChanger : MonoBehaviour
     {
         _dropdown = _dropdown.GetComponent<Dropdown>();
 
-        _fullscreenButton = _fullscreenButton.GetComponent<Button>();
-        _fullscreenButton.onClick.AddListener(ChangeFullscreen);
+        _fullscreenToggle = _fullscreenToggle.GetComponent<Toggle>();
+        _fullscreenToggle.onValueChanged.AddListener(ChangeFullscreen);
     }
     public void ChangeResolution()
     {
@@ -37,16 +37,9 @@ public class ResolutionChanger : MonoBehaviour
                 break;
         }
     }
-    public void ChangeFullscreen()
+    public void ChangeFullscreen(bool fullscreen)
     {
-        if (_isFullScreen)
-        {
-            SetFullscreen(false);
-        }
-        else
-        {
-            SetFullscreen(true);
-        }
+        SetFullscreen(fullscreen);
     }
     private void SetResolution(int width, int height)
     {
