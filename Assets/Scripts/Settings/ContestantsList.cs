@@ -19,7 +19,7 @@ public class ContestantsList
     public UnityEvent<Contestant> OnEnemyAdd;
     public UnityEvent<Contestant> OnEnemyRemove;
 
-    public bool Add(Contestant enemy)
+    public bool TryAdd(Contestant enemy)
     {
         if(_enemyList.Contains(enemy))
             return false;
@@ -30,16 +30,11 @@ public class ContestantsList
         return true;
     }
 
-    public bool Remove(Contestant enemy)
+    public bool TryRemove(Contestant enemy)
     {
         _enemyList.Remove(enemy);
         
         OnEnemyRemove?.Invoke(enemy);
         return true;
-    }
-
-    public void OnChangeName(Contestant enemy)
-    {
-
     }
 }

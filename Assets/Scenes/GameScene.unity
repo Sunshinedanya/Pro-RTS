@@ -155,7 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _button: {fileID: 738551288}
   _mapCreator: {fileID: 360956851}
-  _mapSide: 25
+  _mapSide: 100
 --- !u!114 &360956851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +170,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _treePrefab: {fileID: 1382659402361695440, guid: c2c69f8104c371c4a9ff5d159de70649, type: 3}
   _rockPrefab: {fileID: 4412417125401228052, guid: 1a64972ad17ab9f4c8901e1a961e3a6f, type: 3}
-  _plane: {fileID: 5395574289676481873, guid: 24e123b5be922e7468bf21929051970b, type: 3}
+  _color: {r: 0.29681382, g: 0.5471698, b: 0.5088086, a: 1}
+  _treeChance: 0.75
+  _rockChance: 0.79
 --- !u!4 &360956852
 Transform:
   m_ObjectHideFlags: 0
