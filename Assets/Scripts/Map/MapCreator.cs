@@ -9,6 +9,7 @@ public class MapCreator : MonoBehaviour
 
     [SerializeField] private Color _color;
 
+    // bigger chance == bigger chance
     [SerializeField] private float _treeChance;
     [SerializeField] private float _rockChance;
 
@@ -26,18 +27,13 @@ public class MapCreator : MonoBehaviour
 
         for (float i = 0; i < sideSize / multiplier; i += 0.1f)
         {
-            print(i);
             for (float j = 0; j < sideSize / multiplier; j += 0.1f)
             {
-                print(j);
                 var noise = Mathf.PerlinNoise(i, j);
-
-                print(noise);
 
                 if (noise >= 0.4)
                 {
                     SpawnResource(i * multiplier, j * multiplier, noise);
-
                 }
             }
         }
@@ -46,11 +42,11 @@ public class MapCreator : MonoBehaviour
     {
         var position = new Vector3(x, 0, z);
 
-        if (noise >= _treeChance)
+        if (noise <= _treeChance)
         {
             Instantiate(_treePrefab, position, Quaternion.identity);
         }
-        else if (noise >=_rockChance)
+        else if (noise <=_rockChance)
         {
             Instantiate(_rockPrefab, position, Quaternion.identity);
         }
