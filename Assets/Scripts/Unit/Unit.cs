@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 
-public abstract class Unit : MonoBehaviour, IDamagable
+[System.Serializable]
+public abstract class Unit : IDamagable
 {
     private string _name;
     private int _health;
     private float _speed;
-    private float _attackRange;
+    private float _detectionRange;
     private List<object> cost;
     
     public IReadOnlyList<object> Cost => cost;

@@ -12,9 +12,6 @@ public class MapCreator : MonoBehaviour
     [SerializeField] private float _treeChance;
     [SerializeField] private float _rockChance;
 
-    [SerializeField] private int _treeCount;
-    [SerializeField] private int _rockCount;
-
     public void GenerateMap(float sideSize)
     {
         DestroyImmediate(_plane);
@@ -24,9 +21,6 @@ public class MapCreator : MonoBehaviour
 
         if (_rockPrefab == null)
             throw new ArgumentException();
-
-        _treeCount = 0;
-        _rockCount = 0;
 
         GeneratePlane(sideSize);
 
@@ -53,12 +47,10 @@ public class MapCreator : MonoBehaviour
 
         if (noise > _treeChance)
         {
-            _treeCount++;
             Instantiate(_treePrefab, position, Quaternion.identity, _plane.transform);
         }
         else if (noise < _rockChance)
         {
-            _rockCount++;
             Instantiate(_rockPrefab, position, Quaternion.identity, _plane.transform);
         }
     }
