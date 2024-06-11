@@ -9,46 +9,57 @@ public class MapCreator : MonoBehaviour
 
     [SerializeField] private Color _color;
 
-    // bigger chance == bigger chance
     [SerializeField] private float _treeChance;
     [SerializeField] private float _rockChance;
 
-    private readonly int multiplier = 10;
+    [SerializeField] private int _treeCount;
+    [SerializeField] private int _rockCount;
 
     public void GenerateMap(float sideSize)
     {
+        DestroyImmediate(_plane);
+
         if (_treePrefab == null)
             throw new ArgumentException();
 
         if (_rockPrefab == null)
             throw new ArgumentException();
 
+        _treeCount = 0;
+        _rockCount = 0;
+
         GeneratePlane(sideSize);
 
-        for (float i = 0; i < sideSize / multiplier; i += 0.1f)
-        {
-            for (float j = 0; j < sideSize / multiplier; j += 0.1f)
-            {
-                var noise = Mathf.PerlinNoise(i, j);
+        var randomMultiplier = UnityEngine.Random.Range(-100f, 100f);
 
-                if (noise >= 0.4)
+        for (float i = 0; i < sideSize / 10; i += 0.1f)
+        {
+            for (float j = 0; j < sideSize / 10; j += 0.1f)
+            {
+                var noise = Mathf.PerlinNoise(i + randomMultiplier, j + randomMultiplier);
+                
+                if(noise >= 0.4)
                 {
-                    SpawnResource(i * multiplier, j * multiplier, noise);
+                    SpawnResource(i * 10, j * 10, noise, UnityEngine.Random.Range(-3f, 3f));
                 }
             }
         }
     }
-    private void SpawnResource(float x, float z, float noise)
+    private void SpawnResource(float x, float z, float noise, float multiplier)
     {
-        var position = new Vector3(x, 0, z);
+        noise += multiplier;
 
-        if (noise <= _treeChance)
+        var position = new Vector3(x + multiplier, 0, z + multiplier);
+
+        if (noise > _treeChance)
         {
-            Instantiate(_treePrefab, position, Quaternion.identity);
+            _treeCount++;
+            Instantiate(_treePrefab, position, Quaternion.identity, _plane.transform);
         }
-        else if (noise <=_rockChance)
+        else if (noise < _rockChance)
         {
-            Instantiate(_rockPrefab, position, Quaternion.identity);
+            _rockCount++;
+            Instantiate(_rockPrefab, position, Quaternion.identity, _plane.transform);
         }
     }
 
