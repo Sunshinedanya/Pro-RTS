@@ -3,7 +3,7 @@
 public class UnitComponent<TUnit> : MonoBehaviour
     where TUnit : Unit
 {
-    private TUnit _unitStats;
+    [SerializeField] private TUnit _unitStats;
 
     public UnitComponent(TUnit unitStats)
     {
