@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MapCreator : MonoBehaviour
 {
@@ -38,6 +40,8 @@ public class MapCreator : MonoBehaviour
                 }
             }
         }
+
+        GenerateNavMesh(_plane.transform, sideSize);    
     }
     private void SpawnResource(float x, float z, float noise, float multiplier)
     {
@@ -93,5 +97,43 @@ public class MapCreator : MonoBehaviour
         _plane.AddComponent<MeshCollider>();
 
         meshRenderer.material.color = _color;
+    }
+
+    private void GenerateNavMesh(Transform plane, float sideSize)
+    {
+        UnityEngine.AI.NavMesh.RemoveAllNavMeshData();  
+        var settings = UnityEngine.AI.NavMesh.CreateSettings();
+        var buildSources = new List<NavMeshBuildSource>();
+        var floor = new NavMeshBuildSource
+        {
+            transform = Matrix4x4.TRS(Vector3.zero, plane.rotation, Vector3.one),
+            shape = NavMeshBuildSourceShape.Box,
+            size = new Vector3(sideSize, 1,sideSize)
+        };
+        buildSources.Add(floor);
+
+        // Create obstacle 
+        const int OBSTACLE = 1 << 0;
+
+        var obstacles = plane.GetComponentsInChildren<ResourceComponent>();
+
+        foreach (var item in obstacles)
+        {
+            var obstacle = new NavMeshBuildSource
+            {
+                transform = Matrix4x4.TRS(item.transform.position, item.transform.rotation, Vector3.one),
+                shape = NavMeshBuildSourceShape.Box,
+                size = new Vector3(1, 1, 1),
+                area = OBSTACLE
+            };
+            buildSources.Add(obstacle);
+        }
+
+
+        // build navmesh
+        NavMeshData built = NavMeshBuilder.BuildNavMeshData(
+            settings, buildSources, new Bounds(Vector3.zero, new Vector3(sideSize, 10, sideSize)),
+            new Vector3(0, 0, 0), plane.rotation);
+        UnityEngine.AI.NavMesh.AddNavMeshData(built);
     }
 }

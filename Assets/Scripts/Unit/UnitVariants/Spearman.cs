@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 
-//честно хуйня какаято
 [System.Serializable]
-public sealed class Archer : Unit, IDamager
+public sealed class Spearman : Unit, IDamager
 {
     [SerializeField] private float _damage;
-    [SerializeField] private float _minAttackRange ;
-    [SerializeField] private float _maxAttackRange ;
-    [SerializeField] private float _attackCooldown ;
+    [SerializeField] private float _minAttackRange;
+    [SerializeField] private float _maxAttackRange;
+    [SerializeField] private float _attackCooldown;
 
     public float damage => _damage;
     public float minAttackRange => _minAttackRange;

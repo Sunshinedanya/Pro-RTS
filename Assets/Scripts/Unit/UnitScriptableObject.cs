@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class UnitScriptableObject<TUnit> : ScriptableObject
     where TUnit : Unit
 {
     [SerializeField] public TUnit unit;
 
-    public virtual Unit GetUnit()
+    public virtual TUnit GetUnit()
     {
         return unit;
     }
