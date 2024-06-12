@@ -1,9 +1,18 @@
-﻿public class Archer : Unit, IDamager
+﻿using UnityEngine;
+
+//честно хуйня какаято
+[System.Serializable]
+public class Archer : Unit, IDamager
 {
-    public float damage { get; set; }
-    public float minAttackRange { get; set; }
-    public float maxAttackRange { get; set; }
-    public float attackCooldown { get; set; }
+    [SerializeField] private float _damage;
+    [SerializeField] private float _minAttackRange ;
+    [SerializeField] private float _maxAttackRange ;
+    [SerializeField] private float _attackCooldown ;
+
+    public float damage => _damage;
+    public float minAttackRange => _minAttackRange;
+    public float maxAttackRange => _maxAttackRange;
+    public float attackCooldown => _attackCooldown;
 
     public override void GetDamage(int damage)
     {

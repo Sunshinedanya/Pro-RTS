@@ -1,7 +1,7 @@
 ﻿public interface IDamager
 {
-    float damage { get; set; }
-    float minAttackRange { get; set; }
-    float maxAttackRange { get; set; }
-    float attackCooldown { get; set; }
+    float damage { get; }
+    float minAttackRange { get; }
+    float maxAttackRange { get; }
+    float attackCooldown { get; }
 }
