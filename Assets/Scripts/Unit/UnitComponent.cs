@@ -1,19 +1,21 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
+
+public abstract class UnitComponent : MonoBehaviour
+{
+    public abstract Unit GetUnit();
+}
 
 [RequireComponent(typeof(NavMeshAgent))]
-public abstract class UnitComponent<TUnit> : MonoBehaviour, ISerializationCallbackReceiver
+public abstract class UnitComponent<TUnit> : UnitComponent
     where TUnit : Unit
 {
-    [SerializeField] private UnitScriptableObject<TUnit> _unitStats;
     [SerializeField] private TUnit _unit;
+    [SerializeField] private UnityEvent _onSelected;
 
-    public void OnAfterDeserialize()
+    public override Unit GetUnit()
     {
-        _unit = _unitStats.GetUnit();
-    }
-
-    public void OnBeforeSerialize()
-    {
+        return _unit;
     }
 }

@@ -58,7 +58,6 @@ public class MapCreator : MonoBehaviour
             Instantiate(_rockPrefab, position, Quaternion.identity, _plane.transform);
         }
     }
-
     private void GeneratePlane(float sideSize)
     {
         _plane = new GameObject("MapPlane");
