@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a08f77da47b24c439bae4c6df804442, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  height: 1920
-  width: 1080
-  isFullScreen: 1
-  volume: 100
-  mute: 0
+  height: 1280
+  width: 720
+  isFullscreen: 1
+  volume: 0
+  mute: 1

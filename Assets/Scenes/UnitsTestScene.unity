@@ -407,7 +407,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1131050632274006739, guid: 866e610fc65621b4aa0bcccd07ee493f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 437413697}
+      addedObject: {fileID: 437413699}
     - targetCorrespondingSourceObject: {fileID: 1131050632274006739, guid: 866e610fc65621b4aa0bcccd07ee493f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 437413696}
@@ -437,24 +437,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1435069b2fcf6d940b87a6c35239322d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unitFactory: {fileID: 437413697}
+  _unitFactory: {fileID: 437413699}
   _button: {fileID: 657185605}
   _unitPrefab: {fileID: 59769500803199304, guid: dc19e5ce6b5f2de4b8a95970f2ac2c27, type: 3}
---- !u!114 &437413697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 437413694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe8de465095c2124c8673e7a271287c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _inventory: {fileID: 437413698}
-  _spawnPoint: {fileID: 1977481734}
-  dd: {fileID: 0}
 --- !u!114 &437413698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,6 +457,21 @@ MonoBehaviour:
   _tree: 10
   _iron: 10
   _stone: 10
+--- !u!114 &437413699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437413694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e57cd126d738995468ea9dabce4a1a9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inventory: {fileID: 437413698}
+  _spawnPoint: {fileID: 1977481734}
+  _unitData: {fileID: 11400000, guid: e392ccbacb7ecd94dbb8471b4005a91c, type: 2}
 --- !u!1 &657185603
 GameObject:
   m_ObjectHideFlags: 0

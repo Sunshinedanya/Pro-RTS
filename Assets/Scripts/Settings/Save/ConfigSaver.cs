@@ -2,7 +2,7 @@
 using System.IO;
 using UnityEngine;
 
-public class ConfigSaver : MonoBehaviour, ISerializationCallbackReceiver
+public class ConfigSaver : MonoBehaviour
 {
     private readonly string _fileName = "Settings.json";
     private string path;
@@ -42,6 +42,7 @@ public class ConfigSaver : MonoBehaviour, ISerializationCallbackReceiver
         var save = JsonUtility.FromJson<GameConfig>(json);
 
         SetConfig(save);
+        _currentScriptableObjectConfig.SetConfig(save);
     }
 
     public GameConfig GetConfig()
@@ -72,15 +73,5 @@ public class ConfigSaver : MonoBehaviour, ISerializationCallbackReceiver
 
         _resolutionChanger.SetConfig(resolutionConfig);
         _volumeChanger.SetConfig(volumeConfig);
-    }
-
-    public void OnBeforeSerialize()
-    {
-       var config = _currentScriptableObjectConfig.GetConfig();
-       SetConfig(config);
-    }
-
-    public void OnAfterDeserialize()
-    {
     }
 }
