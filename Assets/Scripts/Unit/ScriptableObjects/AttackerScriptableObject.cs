@@ -1,4 +1,7 @@
-﻿public class AttackerScriptableObject: UnitScriptableObject<UnitAttacker>
+﻿using UnityEngine;
+
+[CreateAssetMenu]
+public class AttackerScriptableObject: UnitScriptableObject<UnitAttacker>
 {
 
 }

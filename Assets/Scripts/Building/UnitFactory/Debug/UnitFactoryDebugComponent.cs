@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class UnitFactoryDebugComponent : MonoBehaviour
 {
-    [SerializeField] private UnitFactory _unitFactory;
+    [SerializeField] private UnitFactoryComponent _unitFactory;
     [SerializeField] private Button _button;
 
     public GameObject _unitPrefab;

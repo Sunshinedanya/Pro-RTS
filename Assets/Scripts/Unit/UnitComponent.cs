@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
@@ -17,5 +18,15 @@ public abstract class UnitComponent<TUnit> : UnitComponent
     public override Unit GetUnit()
     {
         return _unit;
+    }
+
+    public Type GetType() 
+    { 
+        return _unit.GetType(); 
+    }  
+
+    public void FillUnit(UnitScriptableObject<TUnit> unitScriptableObject)
+    {
+        _unit = unitScriptableObject.unit;
     }
 }

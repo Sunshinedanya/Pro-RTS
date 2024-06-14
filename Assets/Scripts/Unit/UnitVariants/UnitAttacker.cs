@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public abstract class UnitAttacker : Unit, IDamager
+public class UnitAttacker : Unit, IDamager
 {
     [SerializeField] private float _damage;
     [SerializeField] private float _minAttackRange;
