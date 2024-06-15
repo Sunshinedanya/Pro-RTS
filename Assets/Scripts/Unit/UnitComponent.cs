@@ -13,7 +13,6 @@ public abstract class UnitComponent<TUnit> : UnitComponent
     where TUnit : Unit
 {
     [SerializeField] private TUnit _unit;
-    [SerializeField] private UnityEvent _onSelected;
 
     public override Unit GetUnit()
     {
@@ -28,5 +27,20 @@ public abstract class UnitComponent<TUnit> : UnitComponent
     public void FillUnit(UnitScriptableObject<TUnit> unitScriptableObject)
     {
         _unit = unitScriptableObject.unit;
+    }
+
+    public void GetDamage(int damage)
+    {
+        _unit._health -= damage;
+        if(_unit._health <= 0)
+        {
+            Kill(); 
+        }
+    }
+
+    private void Kill()
+    {
+        UnitSelection.Instance.RemoveUnit(gameObject);
+        Destroy(gameObject);
     }
 }

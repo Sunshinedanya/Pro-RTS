@@ -12,6 +12,7 @@ public class UnitInstacer : MonoBehaviour
         {
             unitComponent.FillUnit(unit);
             Instantiate(unitComponent, spawnPoint.position, Quaternion.identity);
+            UnitSelection.Instance.AddUnit(unitPrefab);
         }
         else
         {
