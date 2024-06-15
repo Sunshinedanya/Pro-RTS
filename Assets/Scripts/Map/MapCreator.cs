@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class MapCreator : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class MapCreator : MonoBehaviour
 
     [SerializeField] private float _treeChance;
     [SerializeField] private float _rockChance;
+
+    [SerializeField] private UnityEvent _AfterMapGenerated; 
 
     public void GenerateMap(float sideSize)
     {
@@ -41,7 +44,11 @@ public class MapCreator : MonoBehaviour
             }
         }
 
-        GenerateNavMesh(_plane.transform, sideSize);    
+        var readySize = GenerateNavMesh(_plane.transform, sideSize);   
+        
+        AfterNavMeshGenetated(readySize);
+
+        _AfterMapGenerated.Invoke();
     }
     private void SpawnResource(float x, float z, float noise, float multiplier)
     {
@@ -97,11 +104,10 @@ public class MapCreator : MonoBehaviour
 
         meshRenderer.material.color = _color;
     }
-
-    private void GenerateNavMesh(Transform plane, float sideSize)
+    private float GenerateNavMesh(Transform plane, float sideSize)
     {
-        UnityEngine.AI.NavMesh.RemoveAllNavMeshData();  
-        var settings = UnityEngine.AI.NavMesh.CreateSettings();
+        NavMesh.RemoveAllNavMeshData();  
+        var settings = NavMesh.CreateSettings();
         var buildSources = new List<NavMeshBuildSource>();
         var floor = new NavMeshBuildSource
         {
@@ -122,7 +128,7 @@ public class MapCreator : MonoBehaviour
             {
                 transform = Matrix4x4.TRS(item.transform.position, item.transform.rotation, Vector3.one),
                 shape = NavMeshBuildSourceShape.Box,
-                size = new Vector3(1, 1, 1),
+                size = new Vector3(0.3f, 0.3f, 0.3f),
                 area = OBSTACLE
             };
             buildSources.Add(obstacle);
@@ -131,8 +137,14 @@ public class MapCreator : MonoBehaviour
 
         // build navmesh
         NavMeshData built = NavMeshBuilder.BuildNavMeshData(
-            settings, buildSources, new Bounds(Vector3.zero, new Vector3(sideSize, 10, sideSize)),
-            new Vector3(0, 0, 0), plane.rotation);
-        UnityEngine.AI.NavMesh.AddNavMeshData(built);
+            settings, buildSources, new Bounds(Vector3.zero, new Vector3(sideSize, 0, sideSize)),
+            new Vector3(0, 0,0), plane.rotation);
+        NavMesh.AddNavMeshData(built);
+
+        return sideSize;
+    }
+    private void AfterNavMeshGenetated(float sideSize)
+    {
+        _plane.transform.position = new Vector3(-sideSize/2,0,-sideSize/2);
     }
 }
