@@ -20,7 +20,7 @@ public class CameraMover : MonoBehaviour
 
     private void Move()
     {
-       transform.position += new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * _speed * Time.deltaTime;
+       transform.position += new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * _speed * Time.deltaTime;
     }
 
     private void CameraResize()

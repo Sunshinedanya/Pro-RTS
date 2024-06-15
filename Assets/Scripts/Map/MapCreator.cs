@@ -29,6 +29,8 @@ public class MapCreator : MonoBehaviour
 
         GeneratePlane(sideSize);
 
+        var readySize = GenerateNavMesh(_plane.transform, sideSize);
+
         var randomMultiplier = UnityEngine.Random.Range(-100f, 100f);
 
         for (float i = 0; i < sideSize / 10; i += 0.1f)
@@ -44,8 +46,6 @@ public class MapCreator : MonoBehaviour
             }
         }
 
-        var readySize = GenerateNavMesh(_plane.transform, sideSize);   
-        
         AfterNavMeshGenetated(readySize);
 
         _AfterMapGenerated.Invoke();
@@ -116,24 +116,6 @@ public class MapCreator : MonoBehaviour
             size = new Vector3(sideSize, 1,sideSize)
         };
         buildSources.Add(floor);
-
-        // Create obstacle 
-        const int OBSTACLE = 1 << 0;
-
-        var obstacles = plane.GetComponentsInChildren<ResourceComponent>();
-
-        foreach (var item in obstacles)
-        {
-            var obstacle = new NavMeshBuildSource
-            {
-                transform = Matrix4x4.TRS(item.transform.position, item.transform.rotation, Vector3.one),
-                shape = NavMeshBuildSourceShape.Box,
-                size = new Vector3(0.3f, 0.3f, 0.3f),
-                area = OBSTACLE
-            };
-            buildSources.Add(obstacle);
-        }
-
 
         // build navmesh
         NavMeshData built = NavMeshBuilder.BuildNavMeshData(
