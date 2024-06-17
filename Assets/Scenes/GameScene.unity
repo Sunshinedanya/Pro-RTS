@@ -155,7 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _button: {fileID: 738551288}
   _mapCreator: {fileID: 360956851}
-  _mapSide: 50
+  _mapSide: 100
 --- !u!114 &360956851
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class MainBuilding : BuildingCompopnent<Building>
     {
         print("start");
         ClearSpace(radius);
+        Camera.main.transform.position = new Vector3(transform.position.x,30,transform.position.z -25);
     }
 
     private void ClearSpace(float radius)

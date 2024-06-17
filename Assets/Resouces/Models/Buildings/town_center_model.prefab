@@ -2967,7 +2967,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inventory: {fileID: 0}
-  radius: 10
+  radius: 25
 --- !u!1 &4046317012067538984
 GameObject:
   m_ObjectHideFlags: 0
