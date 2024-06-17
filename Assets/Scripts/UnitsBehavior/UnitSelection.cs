@@ -35,7 +35,8 @@ public class UnitSelection : MonoBehaviour
 
     public void ClickSelect(GameObject unitToAdd)
     {
-
+        Deselect();
+        _unitSelected.Add(unitToAdd);
     }
 
     public void DragSelect(GameObject unitToAdd)
@@ -45,6 +46,6 @@ public class UnitSelection : MonoBehaviour
 
     public void Deselect()
     {
-
+        _unitSelected.Clear();
     }
 }

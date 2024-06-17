@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Archer Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1861785189790964152, guid: 822451c3cfcd85c418c521a0c60f16ac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2489700517135309313, guid: 822451c3cfcd85c418c521a0c60f16ac, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.054641724
@@ -51,6 +55,30 @@ PrefabInstance:
     - target: {fileID: 2489700517135309313, guid: 822451c3cfcd85c418c521a0c60f16ac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638773636268526677, guid: 822451c3cfcd85c418c521a0c60f16ac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3003888772050032897, guid: 822451c3cfcd85c418c521a0c60f16ac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4910123614183280522, guid: 822451c3cfcd85c418c521a0c60f16ac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7124574994851253398, guid: 822451c3cfcd85c418c521a0c60f16ac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7190893204211837536, guid: 822451c3cfcd85c418c521a0c60f16ac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209986420709015087, guid: 822451c3cfcd85c418c521a0c60f16ac, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -144,9 +172,6 @@ MonoBehaviour:
     _minAttackRange: 1
     _maxAttackRange: 1
     _attackCooldown: 1
-  _onSelected:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!54 &7744383627618451360
 Rigidbody:
   m_ObjectHideFlags: 0

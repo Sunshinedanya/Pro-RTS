@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class UnitClick : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Camera _mainCamera;
+
+    [SerializeField] private LayerMask _clickable;
+    [SerializeField] private LayerMask _ground;
+
+    private void Start()
     {
-        
+        _mainCamera = Camera.main;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
         
+           if(Physics.Raycast(ray,out hit, Mathf.Infinity, _clickable))
+           {
+                UnitSelection.Instance.ClickSelect(hit.collider.gameObject);
+           } 
+           else
+           {
+                UnitSelection.Instance.Deselect();
+           }
+        }
     }
 }
