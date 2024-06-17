@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8155590289634007560}
   - component: {fileID: -6424662136145829809}
-  m_Layer: 0
+  - component: {fileID: -8244328044462272196}
+  m_Layer: 7
   m_Name: tree_resource_model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,6 +50,27 @@ MonoBehaviour:
   OnDestroyResource:
     m_PersistentCalls:
       m_Calls: []
+--- !u!65 &-8244328044462272196
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382659402361695440}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3635314921877729025
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,7 +82,7 @@ GameObject:
   - component: {fileID: 3630299915010664789}
   - component: {fileID: 3604492696585987947}
   - component: {fileID: 3612712517200544251}
-  m_Layer: 11
+  m_Layer: 7
   m_Name: model_uncollected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
