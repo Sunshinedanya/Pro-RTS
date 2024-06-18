@@ -7,6 +7,9 @@ using UnityEngine.SocialPlatforms;
 
 public class MapGenerator : MonoBehaviour
 {
+    private MapConfig _mapConfig;
+
+
     [SerializeField] private GameObject _treePrefab;
     [SerializeField] private GameObject _rockPrefab;
     private GameObject _plane;
@@ -15,6 +18,13 @@ public class MapGenerator : MonoBehaviour
 
     [SerializeField] private float _treeChance;
     [SerializeField] private float _rockChance;
+
+    private void Start()
+    {
+        _mapConfig = Resources.Load<MapConfig>("MapConfig");
+
+        GenerateMap(_mapConfig.mapSize);
+    }
 
     public void GenerateMap(float sideSize)
     {
@@ -28,9 +38,6 @@ public class MapGenerator : MonoBehaviour
         int planeSize = Mathf.RoundToInt(Mathf.Sqrt(sideSize));
         sideSize = planeSize;
 
-        float playerBaseX = UnityEngine.Random.Range(-sideSize / 2, sideSize / 2);
-        float playerBaseZ = UnityEngine.Random.Range(-sideSize / 2, sideSize / 2);
-
         GeneratePlane(sideSize);
 
         var readySize = GenerateNavMesh(_plane.transform, sideSize);
@@ -41,9 +48,6 @@ public class MapGenerator : MonoBehaviour
         {
             for (float j = 0; j < sideSize / 10; j += 0.1f)
             {
-                if (Mathf.Pow(playerBaseX / 10 + i, 2) + Mathf.Pow(playerBaseZ / 10 + j, 2) < 10)
-                    continue;
-
                 var noise = Mathf.PerlinNoise(i + randomMultiplier, j + randomMultiplier);
 
                 if (noise >= 0.4)
