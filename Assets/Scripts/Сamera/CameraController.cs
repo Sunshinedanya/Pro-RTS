@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraMover : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private Camera _camera;
@@ -21,6 +19,11 @@ public class CameraMover : MonoBehaviour
     private void Move()
     {
        transform.position += new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * _speed * Time.deltaTime;
+    }
+
+    public void Move(float x,float z)
+    {
+        transform.position += new Vector3(x, 0, z) * _speed * Time.deltaTime;
     }
 
     private void CameraResize()

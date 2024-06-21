@@ -9,15 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e982fdcb6e2db654f9ec10d73772ec99, type: 3}
-  m_Name: Healer
+  m_Script: {fileID: 11500000, guid: ed0cfc5667aa5ba4fa04991435a4c062, type: 3}
+  m_Name: New Attacker Scriptable Object 1
   m_EditorClassIdentifier: 
-  unit:
+  _path: 1
+  _dataElement:
     _name: 
-    _health: 0
+    _health: 123
+    _maxhealth: 0
     _speed: 0
     _detectionRange: 0
-    _heal: 0
-    _minHealRange: 0
-    _maxHealRange: 0
-    _healCooldown: 0
+    _cost:
+      _food: 0
+      _tree: 0
+      _iron: 0
+      _stone: 0
+    _damage: 0
+    _minAttackRange: 0
+    _maxAttackRange: 0
+    _attackCooldown: 0

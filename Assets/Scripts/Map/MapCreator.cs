@@ -25,7 +25,7 @@ public class MapCreator : MonoBehaviour
     private void Start()
     {
         _AfterMapGenerated.AddListener(SpawnBases);
-        GenerateMap(_gameSession.complexity.mapSize);
+        GenerateMap(_gameSession.dataElement.mapSize);
     }
 
     public void GenerateMap(float sideSize)
@@ -127,9 +127,9 @@ public class MapCreator : MonoBehaviour
     }
     private void SpawnBases()
     {
-        var MapSize = _gameSession.complexity.mapSize/2;
+        var MapSize = _gameSession.dataElement.mapSize/2;
 
-        for (int i = 0; i < _gameSession.complexity.enemyAmount; i++)
+        for (int i = 0; i < _gameSession.dataElement.enemyAmount; i++)
         {
             var x =Random.Range(-MapSize, MapSize);
             var z = Random.Range(-MapSize, MapSize);

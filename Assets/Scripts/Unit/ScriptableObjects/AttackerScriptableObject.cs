@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu]
-public class AttackerScriptableObject: UnitScriptableObject<UnitAttacker>
-{
-
-}
+[CreateAssetMenu(menuName = nameof(UnitAttacker))]
+public class AttackerScriptableObject: UnitScriptableObject<UnitAttacker> 
+{ }

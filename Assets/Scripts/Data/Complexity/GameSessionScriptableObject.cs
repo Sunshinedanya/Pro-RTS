@@ -1,14 +1,8 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using UnityEngine;
 
 [CreateAssetMenu]
-public sealed class GameSessionScriptableObject : ScriptableObject
+public sealed class GameSessionScriptableObject : ConfigurableScriptableObject<GameSession>
 {
-    [SerializeField] private GameSession _complexity;
-    public GameSession complexity => _complexity;
-
-    public void SetComplexity(GameSession complexity)
-    {
-        _complexity = complexity;
-    }
 }
 

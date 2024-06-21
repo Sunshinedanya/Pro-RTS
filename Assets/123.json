@@ -1,0 +1,17 @@
+{
+    "_name": "123",
+    "_health": 100,
+    "_maxhealth": 100,
+    "_speed": 5.0,
+    "_detectionRange": 3.0,
+    "_cost": {
+        "_food": 1,
+        "_tree": 0,
+        "_iron": 0,
+        "_stone": 0
+    },
+    "_damage": 10000.0,
+    "_minAttackRange": 100.0,
+    "_maxAttackRange": 1000.0,
+    "_attackCooldown": 0.10000000149011612
+}

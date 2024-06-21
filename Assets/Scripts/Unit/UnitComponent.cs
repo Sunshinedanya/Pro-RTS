@@ -25,7 +25,7 @@ public abstract class UnitComponent<TUnit> : UnitComponent
 
     public void FillUnit(UnitScriptableObject<TUnit> unitScriptableObject)
     {
-        _unit = unitScriptableObject.unit;
+        _unit = unitScriptableObject.dataElement;
     }
 
     public void GetDamage(int damage)
