@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public sealed class BuilderDebugComponent : MonoBehaviour
@@ -11,7 +10,6 @@ public sealed class BuilderDebugComponent : MonoBehaviour
     {
         _build = GetComponent<Build>();
         _button.onClick.AddListener(Build);
-        print(_button);
     }
 
     public void Build()

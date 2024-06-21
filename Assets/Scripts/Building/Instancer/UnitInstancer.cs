@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class UnitInstacer : MonoBehaviour
+public sealed class UnitInstacer : MonoBehaviour
 {
     public static void Instantiate<TUnit>(UnitScriptableObject<TUnit> unit, GameObject unitPrefab, Transform spawnPoint)
         where TUnit : Unit
@@ -11,8 +11,8 @@ public class UnitInstacer : MonoBehaviour
         if (isUnit)
         {
             unitComponent.FillUnit(unit);
-            Instantiate(unitComponent, spawnPoint.position, Quaternion.identity);
-            UnitSelection.Instance.AddUnit(unitPrefab);
+            var instance = Instantiate(unitComponent, spawnPoint.position, Quaternion.identity);
+            UnitSelection.Instance.AddUnit(instance.gameObject);
         }
         else
         {

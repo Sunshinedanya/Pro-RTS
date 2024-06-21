@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Events;
 
 public abstract class UnitComponent : MonoBehaviour
 {
@@ -19,7 +18,7 @@ public abstract class UnitComponent<TUnit> : UnitComponent
         return _unit;
     }
 
-    public Type GetType() 
+    public Type GetUnitType() 
     { 
         return _unit.GetType(); 
     }  

@@ -6,6 +6,7 @@ public class ResourceComponent : MonoBehaviour
 {
     [SerializeField] private ResourceType _resourceType;
     [SerializeField] private UnityEvent<ResourceType> OnDestroyResource;
+    [SerializeField] private UnityEvent OnDestroy;
 
     public void DestroyResource()
     {

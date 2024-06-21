@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class MapCreator : MonoBehaviour
 {
@@ -15,7 +17,16 @@ public class MapCreator : MonoBehaviour
     [SerializeField] private float _treeChance;
     [SerializeField] private float _rockChance;
 
-    [SerializeField] private UnityEvent _AfterMapGenerated; 
+    [SerializeField] private UnityEvent _AfterMapGenerated;
+
+    [SerializeField] private GameSessionScriptableObject _gameSession;
+    [SerializeField] private GameObject _enemyBase;
+
+    private void Start()
+    {
+        _AfterMapGenerated.AddListener(SpawnBases);
+        GenerateMap(_gameSession.complexity.mapSize);
+    }
 
     public void GenerateMap(float sideSize)
     {
@@ -29,24 +40,26 @@ public class MapCreator : MonoBehaviour
 
         GeneratePlane(sideSize);
 
-        var readySize = GenerateNavMesh(_plane.transform, sideSize);
+        var navMesh = _plane.AddComponent<NavMeshSurface>();
 
-        var randomMultiplier = UnityEngine.Random.Range(-100f, 100f);
+        navMesh.BuildNavMesh();
+
+        var randomMultiplier = Random.Range(-100f, 100f);
 
         for (float i = 0; i < sideSize / 10; i += 0.1f)
         {
             for (float j = 0; j < sideSize / 10; j += 0.1f)
             {
                 var noise = Mathf.PerlinNoise(i + randomMultiplier, j + randomMultiplier);
-                
-                if(noise >= 0.4)
+
+                if (noise >= 0.4)
                 {
-                    SpawnResource(i * 10, j * 10, noise, UnityEngine.Random.Range(-3f, 3f));
+                    SpawnResource(i * 10, j * 10, noise, Random.Range(-3f, 3f));
                 }
             }
         }
 
-        AfterNavMeshGenetated(readySize);
+        AfterNavMeshGenetated(sideSize);
 
         _AfterMapGenerated.Invoke();
     }
@@ -104,29 +117,24 @@ public class MapCreator : MonoBehaviour
 
         meshRenderer.material.color = _color;
     }
-    private float GenerateNavMesh(Transform plane, float sideSize)
-    {
-        NavMesh.RemoveAllNavMeshData();  
-        var settings = NavMesh.CreateSettings();
-        var buildSources = new List<NavMeshBuildSource>();
-        var floor = new NavMeshBuildSource
-        {
-            transform = Matrix4x4.TRS(Vector3.zero, plane.rotation, Vector3.one),
-            shape = NavMeshBuildSourceShape.Box,
-            size = new Vector3(sideSize, 1,sideSize)
-        };
-        buildSources.Add(floor);
-
-        // build navmesh
-        NavMeshData built = NavMeshBuilder.BuildNavMeshData(
-            settings, buildSources, new Bounds(Vector3.zero, new Vector3(sideSize, 0, sideSize)),
-            new Vector3(0, 0,0), plane.rotation);
-        NavMesh.AddNavMeshData(built);
-
-        return sideSize;
-    }
     private void AfterNavMeshGenetated(float sideSize)
     {
         _plane.transform.position = new Vector3(-sideSize/2,0,-sideSize/2);
+    }
+    public void RegenerateNavMash(NavMeshSurface mesh)
+    {
+        mesh.BuildNavMesh();
+    }
+    private void SpawnBases()
+    {
+        var MapSize = _gameSession.complexity.mapSize/2;
+
+        for (int i = 0; i < _gameSession.complexity.enemyAmount; i++)
+        {
+            var x =Random.Range(-MapSize, MapSize);
+            var z = Random.Range(-MapSize, MapSize);
+
+            Instantiate(_enemyBase, new Vector3(x, 0, z), Quaternion.identity);
+        }
     }
 }

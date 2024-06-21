@@ -17,6 +17,7 @@ public class Build : MonoBehaviour
         _mainCamera = Camera.main;
         _model = Instantiate(_model);
         _model.transform.position = new(0,100,0);
+        _action = (() => { });
     }
 
     private void Update()

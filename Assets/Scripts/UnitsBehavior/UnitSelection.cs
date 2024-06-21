@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class UnitSelection : MonoBehaviour
@@ -7,6 +8,8 @@ public class UnitSelection : MonoBehaviour
     [SerializeField] private List<GameObject> _unitSelected = new List<GameObject>();
 
     public IReadOnlyList<GameObject> units => _units;
+
+    public IReadOnlyList<GameObject> unitsSelected => _unitSelected;
 
     private static UnitSelection _instance;
     public static UnitSelection Instance => _instance;
@@ -41,7 +44,10 @@ public class UnitSelection : MonoBehaviour
 
     public void DragSelect(GameObject unitToAdd)
     {
-
+        if (unitsSelected.Contains(unitToAdd) == false)
+        {
+            _unitSelected.Add(unitToAdd);
+        }
     }
 
     public void Deselect()

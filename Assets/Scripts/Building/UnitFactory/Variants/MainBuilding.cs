@@ -5,21 +5,17 @@ public class MainBuilding : BuildingCompopnent<Building>
     [SerializeField] private float radius;
     private void Start()
     {
-        print("start");
-        ClearSpace(radius);
-        Camera.main.transform.position = new Vector3(transform.position.x,30,transform.position.z -25);
+        ClearSpace();
     }
 
-    private void ClearSpace(float radius)
+    private void ClearSpace()
     {
         var colliders = Physics.OverlapSphere(transform.position, radius);
+
         foreach (var collider in colliders)
         {
-            print(collider);
-            if (collider.gameObject.layer == 7)
-            {
+            if(collider.gameObject.tag == "Resource")
                 Destroy(collider.gameObject);
-            }
         }
     }
 }

@@ -31,13 +31,15 @@ public class UnitDrag : MonoBehaviour
         {
             end = Input.mousePosition;
             DrawVisual();
+            DrawSelection();
         }
 
         if (Input.GetMouseButtonUp(0))
         {
+            SelectUnits();
             start = Vector2.zero;
             end = Vector2.zero;
-
+            
             DrawVisual();
         }
     }
@@ -58,11 +60,35 @@ public class UnitDrag : MonoBehaviour
 
     private void DrawSelection()
     {
-        
+        if(Input.mousePosition.x < start.x)
+        {
+            selectionBox.xMin = Input.mousePosition.x;
+            selectionBox.xMax = start.x;
+        }
+        else
+        {
+            selectionBox.xMin = start.x;
+            selectionBox.xMax = Input.mousePosition.x;
+        }
+
+        if (Input.mousePosition.y < start.y)
+        {
+            selectionBox.yMin = Input.mousePosition.y;
+            selectionBox.yMax = start.y;
+        }
+        else
+        {
+            selectionBox.yMin = start.y;
+            selectionBox.yMax = Input.mousePosition.y;
+        }
     }
 
     private void SelectUnits()
     {
-
+        foreach (var unit in UnitSelection.Instance.units)
+        {
+            if(selectionBox.Contains(_mainCamera.WorldToScreenPoint(unit.transform.position)))
+                UnitSelection.Instance.DragSelect(unit);
+        }
     }
 }
