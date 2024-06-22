@@ -12,7 +12,7 @@ public sealed class UnitInstacer : MonoBehaviour
         {
             unitComponent.FillUnit(unit);
             var instance = Instantiate(unitComponent, spawnPoint.position, Quaternion.identity);
-            UnitSelection.Instance.AddUnit(instance.gameObject);
+            ClickableSelection.Instance.AddUnit(instance.gameObject);
         }
         else
         {

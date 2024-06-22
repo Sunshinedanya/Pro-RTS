@@ -39,7 +39,7 @@ public abstract class UnitComponent<TUnit> : UnitComponent
 
     private void Kill()
     {
-        UnitSelection.Instance.RemoveUnit(gameObject);
+        ClickableSelection.Instance.RemoveUnit(gameObject);
         Destroy(gameObject);
     }
 }

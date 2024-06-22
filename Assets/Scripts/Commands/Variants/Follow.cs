@@ -27,7 +27,7 @@ public class Follow : MonoBehaviour
 
     public void GoTo(Vector3 position)
     {
-        var units = UnitSelection.Instance.unitsSelected;
+        var units = ClickableSelection.Instance.ClickableSelected;
 
         foreach (var unit in units)
         {

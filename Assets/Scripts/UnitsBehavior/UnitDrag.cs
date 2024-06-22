@@ -23,7 +23,6 @@ public class UnitDrag : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            print("asd");
             start = Input.mousePosition;
         }
 
@@ -85,10 +84,10 @@ public class UnitDrag : MonoBehaviour
 
     private void SelectUnits()
     {
-        foreach (var unit in UnitSelection.Instance.units)
+        foreach (var unit in ClickableSelection.Instance.Clickables)
         {
             if(selectionBox.Contains(_mainCamera.WorldToScreenPoint(unit.transform.position)))
-                UnitSelection.Instance.DragSelect(unit);
+                ClickableSelection.Instance.DragSelect(unit);
         }
     }
 }

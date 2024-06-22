@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0916f4c38b1a8438d2248f359a2bb4, type: 3}
   m_Name: New Game Session Scriptable Object
   m_EditorClassIdentifier: 
-  _complexity:
-    enemyCooldown: 10
+  path: 
+  _dataElement:
+    enemyCooldown: 0
     enemyPrefabs: []
-    armySize: 5
-    armyMultiplier: 2
+    armySize: 0
+    armyMultiplier: 0
     mapSize: 100
-    enemyAmount: 5
+    enemyAmount: 6

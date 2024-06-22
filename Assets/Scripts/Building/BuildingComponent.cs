@@ -9,5 +9,6 @@ public abstract class BuildingCompopnent<TBuilding> : MonoBehaviour
     private void Start()
     {
         _inventory = _inventory.GetComponent<Inventory>();
+        ClickableSelection.Instance.AddUnit(this.gameObject);
     }
 }

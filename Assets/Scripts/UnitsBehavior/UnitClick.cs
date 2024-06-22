@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitClick : MonoBehaviour
@@ -23,11 +21,16 @@ public class UnitClick : MonoBehaviour
         
            if(Physics.Raycast(ray,out hit, Mathf.Infinity, _clickable))
            {
-                UnitSelection.Instance.ClickSelect(hit.collider.gameObject);
+                if (Input.GetKey(KeyCode.LeftControl))
+                {
+                    ClickableSelection.Instance.DragSelect(hit.collider.gameObject);
+                    return;
+                }
+                ClickableSelection.Instance.ClickSelect(hit.collider.gameObject);
            } 
            else
            {
-                UnitSelection.Instance.Deselect();
+                ClickableSelection.Instance.Deselect();
            }
         }
     }

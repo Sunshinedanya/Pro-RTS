@@ -204,6 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _treePrefab: {fileID: 1382659402361695440, guid: c2c69f8104c371c4a9ff5d159de70649, type: 3}
   _rockPrefab: {fileID: 4412417125401228052, guid: 1a64972ad17ab9f4c8901e1a961e3a6f, type: 3}
+  _plane: {fileID: 8840828416490263448, guid: a6390606546b0d54c9949aa43f288f4a, type: 3}
   _color: {r: 0.29681382, g: 0.5471698, b: 0.5088086, a: 1}
   _treeChance: 0.4
   _rockChance: 0.2
@@ -668,7 +669,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 856395473}
-  - component: {fileID: 856395474}
+  - component: {fileID: 856395475}
   m_Layer: 0
   m_Name: UnitSelection
   m_TagString: Untagged
@@ -691,7 +692,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 357514505}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &856395474
+--- !u!114 &856395475
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -700,11 +701,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 856395472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 258666da14ca2fc478aeb752aca29625, type: 3}
+  m_Script: {fileID: 11500000, guid: 943de19dae8679e43907e5c51a243bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _units: []
-  _unitSelected: []
+  _clickables: []
+  _clickableSelected: []
+  _onSelected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &881685100
 GameObject:
   m_ObjectHideFlags: 0

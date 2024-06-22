@@ -2,7 +2,7 @@
 
 public class MainBuilding : BuildingCompopnent<Building>
 {
-    [SerializeField] private float radius;
+    public float radius;
     private void Start()
     {
         ClearSpace();
